@@ -37,7 +37,8 @@ private:
 	void DeleteNode(BSTreeNode* &root, int n);
 	void DeleteNodeOutsideRange(BSTreeNode* &root, int min, int max);
 	void DeleteTree(BSTreeNode* &root);
-	bool IsBST(BSTreeNode* &root);
+	bool IsBST(BSTreeNode* root);
+	bool IsBST(BSTreeNode* root, int min, int max);
 
 	void InOrder(BSTreeNode* root);
 	void PreOrder(BSTreeNode* root);

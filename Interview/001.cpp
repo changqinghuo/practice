@@ -8,6 +8,8 @@ void Interview_001::Run()
 	BSTreeNode* tail = NULL;
 	//DeleteTree(m_pRoot->m_pLeft);
 	//DeleteNode(m_pRoot, 10);
+	std::cout << IsBST(m_pRoot) << std::endl;
+	std::cout << IsBST(m_pRoot, -99, 99) << std::endl;
 	DeleteNodeOutsideRange(m_pRoot, 11, 30);
 	InOrder(m_pRoot);
 
@@ -168,6 +170,51 @@ void Interview_001::DeleteTree(BSTreeNode* &root)
 	DeleteTree(root->m_pRight);
 	delete root;
 	root = NULL;
+}
+bool Interview_001::IsBST(BSTreeNode* root, int min, int max)
+{
+	if(root == NULL)
+	{
+		return true;
+	}
+	if(root->m_nValue < min || root->m_nValue > max)
+	{
+		return false;
+	}
+
+	return IsBST(root->m_pLeft, min, root->m_nValue-1) &&
+		   IsBST(root->m_pRight, root->m_nValue+1, max);
+
+}
+bool Interview_001::IsBST(BSTreeNode* root)
+{
+	static BSTreeNode* prev = NULL;
+	if(root == NULL)
+	{
+		return true;
+	}
+
+
+	if(!IsBST(root->m_pLeft))
+	{
+		return false;
+	}
+	
+	if(prev != NULL)
+	{
+		if(root->m_nValue < prev->m_nValue)
+		{
+			return false;
+		}
+	}
+	prev = root;
+
+	if(!IsBST(root->m_pRight))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void Interview_001::DeleteNodeOutsideRange(BSTreeNode* &root, int min, int max)
