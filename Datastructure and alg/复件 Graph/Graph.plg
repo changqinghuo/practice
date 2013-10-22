@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Graph - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Terry\LOCALS~1\Temp\RSP679.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/Graph.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\Datastructure and alg\Graph\Graph.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Terry\LOCALS~1\Temp\RSP679.tmp" 
+Creating temporary file "C:\DOCUME~1\Terry\LOCALS~1\Temp\RSP67A.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/Graph.pdb" /debug /machine:I386 /out:"Debug/Graph.exe" /pdbtype:sept 
+".\Debug\Graph.obj"
+".\Debug\Graph_data.obj"
+".\Debug\public.obj"
+".\Debug\StdAfx.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\Terry\LOCALS~1\Temp\RSP67A.tmp"
+<h3>Output Window</h3>
+Compiling...
+Graph.cpp
+D:\Datastructure and alg\Graph\Graph.cpp(22) : error C2143: syntax error : missing ';' before ')'
+D:\Datastructure and alg\Graph\Graph.cpp(24) : error C2660: 'GetVertex' : function does not take 0 parameters
+Error executing cl.exe.
+Creating command line "bscmake.exe /nologo /o"Debug/Graph.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\Graph.sbr" ".\Debug\Graph_data.sbr" ".\Debug\public.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Graph.exe - 2 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
