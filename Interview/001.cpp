@@ -2,6 +2,7 @@
 #include <iostream>
 #include "001.h"
 using namespace std;
+
 void Interview_001::Run()
 {
 	m_pRoot = CreateBSTree();
@@ -23,6 +24,7 @@ void Interview_001::Run()
 	//test
 
 }
+
 
 void Interview_001::Transform(BSTreeNode* &pLastNodeInList, BSTreeNode* root)
 {
