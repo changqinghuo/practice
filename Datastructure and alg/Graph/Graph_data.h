@@ -36,6 +36,8 @@ public:
 	void SetParent(Vertex* v) {m_pParent = v;};
 	Vertex* GetParent() {return m_pParent;};
 
+	Edge* GetEdge(Vertex* endvertex);
+
 private:
 	string m_vertexName;	
 	float  m_distance;
@@ -52,6 +54,7 @@ public:
 	   void AddEdge(Edge* e);
        
 	   Vertex* GetVertex(string name);
+	   Edge* GetEdge(Vertex* startVertex, Vertex* endVertex);
 	   
 	   int  GetVertexCount(){return m_vertexList.size();};
 
@@ -64,8 +67,6 @@ private:
 
 	std::vector<Vertex*> m_vertexList;
 	std::vector<Edge*>   m_edgeList;
-	
-
 };
 
 class GraphAlg{
@@ -75,6 +76,9 @@ public:
 	void MST_Kruskal();
 	void SP_Dijkstra();
 	void SP_BF();
+    //maxnetorkflow
+	int MaxNetworkFLow();
+	bool MNF_BFS(Graph* rGraph, Vertex* s, Vertex* t);
 
 private:
 	Graph* m_pGraph;

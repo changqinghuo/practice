@@ -24,6 +24,22 @@ void Vertex::AddEdges(Edge* e)
 	m_adjEdges.push_back(e);
 }
 
+Edge* Vertex::GetEdge(Vertex* endvertex)
+{
+	vector<Edge*>::iterator iter;
+	for(iter = m_adjEdges.begin(); iter != m_adjEdges.end(); iter++)
+	{
+		Edge* e = *iter;
+		if(e->GetEndVertex() == endvertex)
+		{
+			return e;
+		}
+	}
+
+	return NULL;
+
+}
+
 Graph::Graph()
 {
     
@@ -50,6 +66,22 @@ void Graph::AddEdge(Edge* e)
 {
     m_edgeList.push_back(e); 
 }
+
+Edge* Graph::GetEdge(Vertex* startVertex, Vertex* endVertex)
+{
+	vector<Edge*>::iterator iter;
+	for(iter=m_edgeList.begin(); iter != m_edgeList.end(); iter++)
+	{
+		Edge* e = *iter;
+		if(e->GetStartVertex() == startVertex && e->GetEndVertex() == endVertex)
+		{
+			return e;
+		}
+	}
+	return NULL;
+
+}
+
 void Graph::AddVertex(Vertex* v)
 {
 	m_vertexList.push_back(v);
@@ -103,7 +135,6 @@ void Graph::LoadGraphFromFile(string filename)
 		e->SetWeight(weight);
 		m_edgeList.push_back(e);
 		vstart->AddEdges(e);
-
 	}
 
 }
@@ -247,8 +278,79 @@ void GraphAlg::SP_Dijkstra()
 		Vertex* v = *iter;
 		std::cout <<  v->GetName() << ": " << v->GetDistance() <<  std::endl;
 
+	}	
+
+}
+
+int GraphAlg::MaxNetworkFLow()
+{
+	Vertex* s = m_pGraph->GetVertex("0");
+	Vertex* t = m_pGraph->GetVertex("5");
+	float maxflow = 0;
+
+	while(MNF_BFS(m_pGraph, s, t))
+	{
+		Vertex* dest = t;
+		float pathflow = 99999;
+		while(dest != s)
+		{
+			Vertex* parent = dest->GetParent();
+			Edge* e = parent->GetEdge(dest);			
+			pathflow = pathflow > e->GetWeight() ? e->GetWeight(): pathflow;
+			dest = parent;
+		}
+
+		//update residual graph weight
+		dest = t;
+		while(dest != s)
+		{
+			Vertex* parent = dest->GetParent();
+			Edge* e = parent->GetEdge(dest);
+
+			////////////need back edge? why
+			e->SetWeight(e->GetWeight() - pathflow);
+			//·´Ïò±ß
+			//
+			dest = parent;
+		}
+		maxflow += pathflow;
 	}
 
-	
+	return maxflow;
+
+}
+
+bool GraphAlg::MNF_BFS(Graph* rGraph, Vertex* s, Vertex* t)
+{
+	vector<Vertex*> vertexlist = rGraph->GetVertexList();
+	vector<Vertex*>::iterator iter = vertexlist.begin();
+	for(; iter != vertexlist.end(); iter++)
+	{
+		Vertex* v = *iter;
+		v->SetParent(NULL);
+	}
+
+	queue<Vertex*> Q;
+	Q.push(s);
+	while(!Q.empty())
+	{
+		Vertex* v = Q.front();
+		Q.pop();
+		vector<Edge*> edges = v->GetAdjEdges();
+		vector<Edge*>::iterator iter;
+		for(iter = edges.begin(); iter != edges.end(); iter++)
+		{
+			Edge* e = *iter;
+			Vertex* endvertex = e->GetEndVertex();
+			if(endvertex->GetParent() == NULL && e->GetWeight() > 0)
+			{
+				endvertex->SetParent(v);
+				Q.push(e->GetEndVertex());
+			}
+			
+		}
+	}
+	return t->GetParent() != NULL;
+
 
 }
