@@ -89,15 +89,11 @@ void Graph::AddVertex(Vertex* v)
 Vertex* Graph::GetVertex(string name)
 {
 	Vertex* ret = NULL;
-    vector<Vertex*>::iterator iter = m_vertexList.begin();
-	for(iter = m_vertexList.begin(); iter != m_vertexList.end(); iter++)
+
+    vector<Vertex*>::iterator iter = std::find_if(m_vertexList.begin(), m_vertexList.end(), VertexEqual(name));
+	if (iter!= m_vertexList.end())
 	{
-		Vertex* v = *iter;
-		if(v->GetName().compare(name) == 0)
-		{
-			ret = v;
-			break;
-		}
+		return *iter;
 	}
 
 	return ret;

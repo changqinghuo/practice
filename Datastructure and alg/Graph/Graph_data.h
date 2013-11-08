@@ -84,4 +84,14 @@ private:
 	Graph* m_pGraph;
 };
 
+//function object
+class VertexEqual{
+public:
+	VertexEqual(std::string name):m_Val(name){}
+	bool operator()(const Vertex* v) { return v->GetName().compare(m_Val) == 0;} 
+private:
+	std::string  m_Val;
+
+};
+
 #endif

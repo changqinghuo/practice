@@ -6,6 +6,7 @@
 #include "string.h"
 #include "001.h"
 #include "wind.h"
+#include "operator_overload.h"
 #include "global.h"
 
 char* strop()
@@ -23,7 +24,7 @@ int main(int argc, char* argv[])
 {
 	
 	
-	Interview* a = (Interview*)new Interview_001();
+	Interview* a = (Interview*)new Interview_operator();
 	a->Run();
 //	union {
 //          short   s;
