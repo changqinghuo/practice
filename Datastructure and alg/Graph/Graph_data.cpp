@@ -13,10 +13,13 @@
 Edge::Edge(Vertex* start, Vertex* end):m_startVertex(start), m_endVertex(end)
 {
    m_weight = 1;
+   
 }
 Vertex::Vertex(const string& name):m_vertexName(name)
 {
    m_distance = 0;
+   m_pParent = NULL;
+   m_bVisted = false;
 }
 
 void Vertex::AddEdges(Edge* e)
@@ -280,6 +283,7 @@ void GraphAlg::SP_Dijkstra()
 
 int GraphAlg::MaxNetworkFLow()
 {
+	
 	Vertex* s = m_pGraph->GetVertex("0");
 	Vertex* t = m_pGraph->GetVertex("5");
 	float maxflow = 0;
@@ -348,5 +352,209 @@ bool GraphAlg::MNF_BFS(Graph* rGraph, Vertex* s, Vertex* t)
 	}
 	return t->GetParent() != NULL;
 
+}
+
+// All paht in between s and t
+void GraphAlg::RunAllPath()
+{
+	Vertex* s = m_pGraph->GetVertex("2");
+	Vertex* t = m_pGraph->GetVertex("5");
+	s->SetVisited(true);
+	AllPath(m_pGraph, s, t);
+}
+
+void GraphAlg::AllPath(Graph* graph, Vertex* s, Vertex* t)
+{
+
+	if(IsSolution(graph, s, t))
+	{
+		PrintSolution(graph, s, t);
+		std::cout << std::endl;
+		return;
+	}
+	vector<Vertex*> vec_can;
+	
+	ConstructCandidates(graph, s, t, vec_can);
+	
+	vector<Vertex*>::iterator iter = vec_can.begin();
+	for(; iter != vec_can.end(); iter++)
+	{
+		Vertex* next = *iter;
+		next->SetParent(s);
+		next->SetVisited(true);
+		
+		AllPath(graph, next, t);
+		next->SetParent(NULL);
+		next->SetVisited(false);
+	}
+}
+
+void GraphAlg::ConstructCandidates(Graph* g, Vertex* s, Vertex*t, vector<Vertex*>& vec_can)
+{
+	vector<Edge*> adjEdges = s->GetAdjEdges();
+	vector<Edge*>::iterator iter = adjEdges.begin();
+	for(; iter!=adjEdges.end(); iter++)
+	{
+		Edge* e = *iter;
+		if(e->GetEndVertex()->GetVisited() == false)
+		{
+			vec_can.push_back(e->GetEndVertex());
+		}
+		
+	}
+}
+
+
+bool GraphAlg::IsSolution(Graph* graph, Vertex* s, Vertex* t)
+{
+	return s == t;
+}
+
+void GraphAlg::PrintSolution(Graph* graph, Vertex* s, Vertex* t)
+{
+// 	while(t != NULL)
+// 	{
+// 		std::cout << t->GetName() << " ";
+// 		t = t->GetParent();
+// 
+// 	}
+	
+
+	if(t == NULL)
+	{		
+		return;
+	}
+    PrintSolution(graph, s, t->GetParent());
+	std::cout << t->GetName() << "  ";
+
+}
+
+
+//DFS
+void GraphAlg::DFS(Graph* g)
+{
+	vector<Vertex*> vertexlist = g->GetVertexList();
+	vector<Vertex*>::iterator vertex_iter = vertexlist.begin();
+	for(; vertex_iter != vertexlist.end(); vertex_iter++)
+	{
+		Vertex* u = *vertex_iter;
+		if(!u->GetVisited())
+		{
+			DFSUtil(g, u);
+		}
+	}
+
+}
+
+void GraphAlg::DFSUtil(Graph* g, Vertex* u)
+{
+	u->SetVisited(true);
+	vector<Edge*> edges = u->GetAdjEdges();
+	
+	vector<Edge*>::iterator iter = edges.begin();
+	for(; iter != edges.end(); iter++)
+	{
+		Edge* e = *iter;
+		Vertex* end = e->GetEndVertex();
+		if(!end->GetVisited())
+		{
+			end->SetParent(u);
+			DFSUtil(g, end);
+		}
+	}
+}
+
+
+// Detect Cycle directed graph
+bool GraphAlg::IsCyclic_Directed(Graph* g)
+{
+	std::set<Vertex*> recursionStack;
+	vector<Vertex*> vertexlist = g->GetVertexList();
+	vector<Vertex*>::iterator vertex_iter = vertexlist.begin();
+	for(; vertex_iter != vertexlist.end(); vertex_iter++)
+	{
+		recursionStack.clear();
+		Vertex* u = *vertex_iter;
+		if(!u->GetVisited() && IsCyclic_Directed_Util(g, u, recursionStack))
+		{
+			return true;			
+		}
+	}
+	return false;
+}
+
+bool GraphAlg::IsCyclic_Directed_Util(Graph* g, Vertex* u, set<Vertex*>& recursionStack)
+{
+	u->SetVisited(true);
+	recursionStack.insert(u);
+	vector<Edge*> edges = u->GetAdjEdges();
+	vector<Edge*>::iterator iter = edges.begin();
+	for(; iter!=edges.end(); iter++)
+	{
+		Edge* e = *iter;
+		Vertex* end = e->GetEndVertex();
+		if(!end->GetVisited())
+		{
+			end->SetParent(u);
+			if(IsCyclic_Directed_Util(g, end, recursionStack))
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if(recursionStack.count(end) > 0)
+			{
+				return true;
+			}
+		}
+	}
+	recursionStack.erase(u);
+	return false;	
+}
+
+//Cyclic undirected
+bool GraphAlg::IsCyclic_unDirected(Graph* g)
+{
+	std::set<Vertex*> recursionStack;
+	vector<Vertex*> vertexlist = g->GetVertexList();
+	vector<Vertex*>::iterator vertex_iter = vertexlist.begin();
+	for(; vertex_iter != vertexlist.end(); vertex_iter++)	{
+		
+		Vertex* u = *vertex_iter;
+		if(!u->GetVisited() && IsCyclic_unDirected_Util(g, u, NULL))
+		{
+			return true;			
+		}
+	}
+	return false;
+}
+
+bool GraphAlg::IsCyclic_unDirected_Util(Graph* g, Vertex* u, Vertex* parent)
+{
+	u->SetVisited(true);
+	vector<Edge*> edges = u->GetAdjEdges();
+	vector<Edge*>::iterator iter = edges.begin();
+	for(; iter!=edges.end(); iter++)
+	{
+		Edge* e = *iter;
+		Vertex* end = e->GetEndVertex();
+		if(!end->GetVisited())
+		{
+			end->SetParent(u);
+			if(IsCyclic_unDirected_Util(g, end, u))
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if(end != parent)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 
 }

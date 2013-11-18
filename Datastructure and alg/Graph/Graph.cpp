@@ -9,10 +9,10 @@
 int main(int argc, char* argv[])
 {
     Graph* g = new Graph();
-	g->LoadGraphFromFile("MaxNetworkFlow_edges.txt");
+	g->LoadGraphFromFile("cycle_undirected.txt");
 	//g->PrintOut();
 	GraphAlg a(g);
-	std::cout << a.MaxNetworkFLow() << std::endl;
+	std::cout << "the graph has cycle: " << a.IsCyclic_unDirected(g) << std::endl;
 	//a.SP_Dijkstra();
 
 	printf("Hello World!\n");

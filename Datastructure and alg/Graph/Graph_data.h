@@ -37,12 +37,15 @@ public:
 	Vertex* GetParent() {return m_pParent;};
 
 	Edge* GetEdge(Vertex* endvertex);
+	void SetVisited(bool b) {m_bVisted = b;}
+	bool GetVisited() {return m_bVisted;}
 
 private:
 	string m_vertexName;	
 	float  m_distance;
 	vector<Edge*> m_adjEdges;
 	Vertex* m_pParent;
+	bool m_bVisted;
 };
 
 
@@ -77,8 +80,39 @@ public:
 	void SP_Dijkstra();
 	void SP_BF();
     //maxnetorkflow
+	//Test data: maxnetworkflow.txt
 	int MaxNetworkFLow();
 	bool MNF_BFS(Graph* rGraph, Vertex* s, Vertex* t);
+	///maxnetworkflow end
+
+	//Find all path between s and t, it is backtrack
+	//Test data: allpath.txt
+	void RunAllPath();
+	void AllPath(Graph* graph, Vertex* s, Vertex* t);
+	void PrintSolution(Graph* graph, Vertex* s, Vertex* t);
+	void ConstructCandidates(Graph* g, Vertex* s, Vertex*t, vector<Vertex*>&  vec_can);
+	bool IsSolution(Graph* graph, Vertex* s, Vertex* t);
+
+
+	//BFS
+
+	//DFS
+	void DFS(Graph* g);
+	void DFSUtil(Graph* g, Vertex* u);
+
+	 //detect cycle in directed and undirected graph:
+	
+	//Test data: cycle_directed.txt
+	bool IsCyclic_Directed(Graph* g);
+	bool IsCyclic_Directed_Util(Graph* g, Vertex* u, set<Vertex*>& recursionStack);
+
+	//Test data: cycle_undirected.txt
+	bool IsCyclic_unDirected(Graph* g);
+	bool IsCyclic_unDirected_Util(Graph* g, Vertex* u, Vertex* parent);
+
+	// find all the cycle in graph
+
+
 
 private:
 	Graph* m_pGraph;
