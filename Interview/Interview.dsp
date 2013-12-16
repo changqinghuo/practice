@@ -93,6 +93,10 @@ SOURCE=.\Interview.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\mystring.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\operator_overload.cpp
 # End Source File
 # Begin Source File
@@ -103,6 +107,10 @@ SOURCE=.\stamp.cpp
 
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
+# End Source File
+# Begin Source File
+
+SOURCE=.\substr.cpp
 # End Source File
 # Begin Source File
 
@@ -122,6 +130,10 @@ SOURCE=.\global.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\mystring.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\operator_overload.h
 # End Source File
 # Begin Source File
@@ -131,6 +143,10 @@ SOURCE=.\stamp.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\substr.h
 # End Source File
 # Begin Source File
 

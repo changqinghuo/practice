@@ -93,6 +93,10 @@ SOURCE=.\SRM596.CPP
 # End Source File
 # Begin Source File
 
+SOURCE=.\SRM597.CPP
+# End Source File
+# Begin Source File
+
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
@@ -111,6 +115,10 @@ SOURCE=.\SRM376.H
 # Begin Source File
 
 SOURCE=.\SRM596.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\SRM597.H
 # End Source File
 # Begin Source File
 

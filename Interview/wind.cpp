@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include <iostream>
+#include <bitset>
 #include "wind.h"
 
 void Interview_Wind::Item1()
@@ -227,8 +228,10 @@ void Interview_Wind::Item6()
 	//给定一个无序数组s，其范围在1-N之间，N为一个大整数；求满足下列条的个数，复杂度为O(N)
 	//a: s中存在数对为相邻关系i = j+1
 	//b：并且这两个数的和也在数组s中
+	// std::bitset does not support dynamic allocation
 	int N = 1000;
 	int count = 0;
+
 	bool* bucket = new bool[N+1];
 	for(int j= 0; j < N+1; j++)
 	{
