@@ -9,6 +9,7 @@
 #include "operator_overload.h"
 #include "global.h"
 #include "substr.h"
+#include "honeywell.h"
 
 
 char* strop()
@@ -33,48 +34,48 @@ int main(int argc, char* argv[])
 {
 	
 	
-//	Interview* a = (Interview*)new SubStr();
-//	a->Run();
+	Interview* a = (Interview*)new HoneyWell();
+	a->Run();
 
-	std::vector<bool> a(16);
-	std::cout << a.begin() << endl;
-	std::cout << a.end() << endl;
-	
-	std::vector<int> vint(10, 1);
-    func(a);
-	//std::cout << testbool << std::endl;
-
-
-// 	for(;itertest != a.end(); itertest++)
-// 	{
-// 		std::cout << itertest << endl;
-// 	}
-
-	vector<bool> testv(5);
-	
-	bool * testb = &testv.front();
-
-	std::cout << testb << std::endl;
-	std::cout << &testv.back() << std::endl;
-	std::cout << &a[0] << std::endl;
-	std::cout << &a[1] << std::endl;
-
-	std::cout << a.size() << "capacity: " << a.capacity() << std::endl;
-
-	std::vector<bool>::iterator iter = find(a.begin(), a.end(), true);
-
-	std::cout << iter << std::endl;
-	std::cout << iter + 1 << std::endl;
-
-
-
-	std::cout << sizeof(a) << std::endl;
-
-	std::vector<int> b;
-	std::cout << b.size() << "capacity: " << b.capacity() << "; sizeof vector: " << sizeof(b) << std::endl; 
-	b.resize(100);
-	std::cout << b.size() << "capacity: " << b.capacity() << "; sizeof vector: " << sizeof(b) << std::endl; 
-
+// 	std::vector<bool> a(16);
+// 	std::cout << a.begin() << endl;
+// 	std::cout << a.end() << endl;
+// 	
+// 	std::vector<int> vint(10, 1);
+//     func(a);
+// 	//std::cout << testbool << std::endl;
+// 
+// 
+// // 	for(;itertest != a.end(); itertest++)
+// // 	{
+// // 		std::cout << itertest << endl;
+// // 	}
+// 
+// 	vector<bool> testv(5);
+// 	
+// 	bool * testb = &testv.front();
+// 
+// 	std::cout << testb << std::endl;
+// 	std::cout << &testv.back() << std::endl;
+// 	std::cout << &a[0] << std::endl;
+// 	std::cout << &a[1] << std::endl;
+// 
+// 	std::cout << a.size() << "capacity: " << a.capacity() << std::endl;
+// 
+// 	std::vector<bool>::iterator iter = find(a.begin(), a.end(), true);
+// 
+// 	std::cout << iter << std::endl;
+// 	std::cout << iter + 1 << std::endl;
+// 
+// 
+// 
+// 	std::cout << sizeof(a) << std::endl;
+// 
+// 	std::vector<int> b;
+// 	std::cout << b.size() << "capacity: " << b.capacity() << "; sizeof vector: " << sizeof(b) << std::endl; 
+// 	b.resize(100);
+// 	std::cout << b.size() << "capacity: " << b.capacity() << "; sizeof vector: " << sizeof(b) << std::endl; 
+// 
 
 //	union {
 //          short   s;

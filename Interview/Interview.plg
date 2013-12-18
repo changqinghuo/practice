@@ -6,37 +6,40 @@
 --------------------Configuration: Interview - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP161.tmp" with contents
+Creating temporary file "C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP328.tmp" with contents
 [
 /nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/Interview.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"F:\practice\Interview\mystring.cpp"
+"F:\practice\Interview\honeywell.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP161.tmp" 
-Creating temporary file "C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP162.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP328.tmp" 
+Creating temporary file "C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP329.tmp" with contents
 [
 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/Interview.pdb" /debug /machine:I386 /out:"Debug/Interview.exe" /pdbtype:sept 
 .\Debug\001.obj
+.\Debug\honeywell.obj
 .\Debug\Interview.obj
+.\Debug\mystring.obj
 .\Debug\operator_overload.obj
 .\Debug\stamp.obj
 .\Debug\StdAfx.obj
 .\Debug\substr.obj
 .\Debug\wind.obj
-.\Debug\mystring.obj
 ]
-Creating command line "link.exe @C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP162.tmp"
+Creating command line "link.exe @C:\DOCUME~1\Tea\LOCALS~1\Temp\RSP329.tmp"
 <h3>Output Window</h3>
 Compiling...
-mystring.cpp
+honeywell.cpp
+F:\practice\Interview\honeywell.cpp(13) : warning C4101: 'p' : unreferenced local variable
+F:\practice\Interview\honeywell.cpp(17) : warning C4101: 'p1' : unreferenced local variable
 Linking...
-Creating command line "bscmake.exe /nologo /o"Debug/Interview.bsc"  .\Debug\StdAfx.sbr .\Debug\001.sbr .\Debug\Interview.sbr .\Debug\operator_overload.sbr .\Debug\stamp.sbr .\Debug\substr.sbr .\Debug\wind.sbr .\Debug\mystring.sbr"
+Creating command line "bscmake.exe /nologo /o"Debug/Interview.bsc"  .\Debug\StdAfx.sbr .\Debug\001.sbr .\Debug\honeywell.sbr .\Debug\Interview.sbr .\Debug\mystring.sbr .\Debug\operator_overload.sbr .\Debug\stamp.sbr .\Debug\substr.sbr .\Debug\wind.sbr"
 Creating browse info file...
 <h3>Output Window</h3>
 
 
 
 <h3>Results</h3>
-Interview.exe - 0 error(s), 0 warning(s)
+Interview.exe - 0 error(s), 2 warning(s)
 </pre>
 </body>
 </html>

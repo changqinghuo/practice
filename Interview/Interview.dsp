@@ -89,6 +89,10 @@ SOURCE=.\001.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\honeywell.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Interview.cpp
 # End Source File
 # Begin Source File
@@ -127,6 +131,10 @@ SOURCE=.\001.h
 # Begin Source File
 
 SOURCE=.\global.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\honeywell.h
 # End Source File
 # Begin Source File
 
